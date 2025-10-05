@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A story about space weather by Kirsanov, Gryshchenko, Ruzhennikov, and Pochynok">
+
+    <title>Stellar Tales: Space Weather</title>
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Comic Neue', cursive;
+            background: linear-gradient(135deg, #1e003e, #00b7eb, #ff00ff);
+            color: #ffffff;
+            padding: 20px;
+            line-height: 1.6;
+            position: relative;
+            overflow-y: auto;
+            min-height: 100vh;
+        }
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://www.transparenttextures.com/patterns/stardust.png');
+            opacity: 0.5;
+            animation: twinkle 3s infinite alternate;
+            z-index: -1;
+        }
+        .book {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(0, 0, 50, 0.7);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.8);
+            text-align: center;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+        .book h1 {
+            font-size: 2.5em;
+            background: linear-gradient(45deg, #ff00ff, #00ccff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            margin-bottom: 20px;
+        }
+        .book img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 15px;
+            margin: 20px 0;
+            border: 3px solid #00ccff;
+            animation: auroraGlow 2s infinite alternate;
+        }
+        .book p {
+            font-size: 1.3em;
+            line-height: 1.6;
+            margin: 20px;
+            text-align: left;
+            color: #e0ffff;
+        }
+        .highlight {
+            background: linear-gradient(45deg, #ff66cc, #66ccff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: bold;
+        }
+        .api-data {
+            font-size: 1.2em;
+            color: #ffcc00;
+            margin-top: 30px;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes auroraGlow {
+            from { box-shadow: 0 0 10px #00ff88, 0 0 20px #ff00ff; }
+            to { box-shadow: 0 0 20px #00ff88, 0 0 30px #ff00ff; }
+        }
+        @keyframes twinkle {
+            from { opacity: 0.3; }
+            to { opacity: 0.7; }
+        }
+        @media (max-width: 600px) {
+            .book h1 { font-size: 2em; }
+            .book p { font-size: 1.1em; }
+            .book { padding: 15px; }
+            .api-data { font-size: 1em; }
+        }
+        .star {
+            position: fixed;
+            width: 2px;
+            height: 2px;
+            background: #ffffff;
+            border-radius: 50%;
+            box-shadow: 0 0 5px 1px rgba(255, 255, 255, 0.8);
+            animation: blink 2s infinite alternate, drift 10s infinite linear;
+            z-index: -1;
+        }
+        @keyframes blink {
+            0% { opacity: 0.2; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
+            100% { opacity: 0.2; transform: scale(0.8); }
+        }
+        @keyframes drift {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(10px, 10px); }
+        }
+        .clickable-word {
+            background: linear-gradient(45deg, #ff66cc, #66ccff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-decoration: none;
+            transition: text-shadow 0.3s ease;
+        }
+        .clickable-word:hover {
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
+        }
+        .youtube-video {
+            width: 100%;
+            max-width: 800px;
+            aspect-ratio: 16 / 9;
+            border-radius: 15px;
+            border: 3px solid #00ccff;
+            animation: auroraGlow 2s infinite alternate;
+            margin: 20px auto;
+            display: block;
+        }
+        @media (max-width: 850px) {
+            .youtube-video {
+                max-width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="stars"></div>
+
+    <nav style="text-align: center; margin-bottom: 20px;">
+        <a href="#intro" style="color: #00ccff; font-size: 1.2em; margin: 0 15px; text-decoration: none;">Introduction</a>
+        <a href="#challenges" style="color: #00ccff; font-size: 1.2em; margin: 0 15px; text-decoration: none;">Challenges</a>
+        <a href="#impact" style="color: #00ccff; font-size: 1.2em; margin: 0 15px; text-decoration: none;">Impact</a>
+        <a href="#finale" style="color: #00ccff; font-size: 1.2em; margin: 0 15px; text-decoration: none;">Finale</a>
+        <a href="#cme-data" style="color: #00ccff; font-size: 1.2em; margin: 0 15px; text-decoration: none;">CME Data</a>
+    </nav>
+
+    <div class="book">
+        <p>Authors: Kirsanov Vladislav, Gryshchenko Veronika, Ruzhennikov Saveliy, Pochynok Yuriy</p>
+        <h1>Chasing the Glow: Alex's Adventure</h1>
+        <p id="intro">Once upon a time, in a cozy town near the Arctic Circle, there lived a photographer named Alex. He was 35 years old and loved capturing nature's wonders with his camera. But his favorite pursuit was photographing the magical lights in the sky—<a href="https://universemagazine.com/shho-take-polyarni-syajva-i-yak-vony-vyglyadayut-na-riznyh-planetah-sonyachnoyi-systemy/?srsltid=AfmBOop8d2Mw1WAMKaH6wtR6BZefgwCnXb8613pKesxOsypIG2GRPd2b" class="clickable-word" title="Auroras are light shows in the sky caused by charged particles" target="_blank" rel="noopener noreferrer">auroras</a>, also known as the Northern Lights. These shimmering green, pink, and purple bands danced like a cosmic party, and Alex chased them around the world to take photos that made everyone say, “Wow!” But why do these lights appear? Kids, it’s all because of <a href="https://science.nasa.gov/heliophysics/focus-areas/space-weather/" class="clickable-word" title="Space weather is changes in space due to solar activity" target="_blank" rel="noopener noreferrer">space weather</a>. Space weather is like Earth’s weather, but in space! It’s caused by activity on the Sun, which is 150 million kilometers away. The Sun releases bursts of energy, like <a href="https://www.nasa.gov/mission_pages/sunearth/spaceweather/index.html" class="clickable-word" title="Solar flares are powerful explosions on the Sun" target="_blank" rel="noopener noreferrer">solar flares</a> (big blasts of light and radiation) or <a href="https://science.nasa.gov/sun/solar-storms-and-flares/" class="clickable-word" title="CME are clouds of charged particles from the Sun" target="_blank" rel="noopener noreferrer">coronal mass ejections (CME)</a>—huge clouds of charged particles speeding through space. When these particles reach Earth, they interact with our planet’s magnetic field and atmosphere, creating stunning effects… but sometimes problems too.</p>
+        <img src="images/sun_explosion1.jpg" alt="Sun Explosion">
+        <p id="challenges">Alex first encountered space weather as a child, watching auroras from his backyard. Now, as a professional photographer, he uses NASA apps and websites to predict when a solar storm might hit. These storms are part of space weather and make auroras brighter and more visible. But chasing them isn’t easy! Alex faces challenges: icy nights (sometimes -30°C!), long trips to remote places, and hours of waiting in the dark. Space weather can also be unpredictable—sometimes the sky is clear, then suddenly a CME lights it up! One starry night, Alex received an alert: a powerful flare had occurred on the Sun, and a coronal mass ejection was heading toward Earth. “This could be the brightest aurora ever!” he thought, grabbing his camera, tripod, and warm boots. As he drove to a hill far from city lights, Alex wondered how this space weather affects everyone.</p>
+        <img src="images/alex.png" alt="Photographer Alex">
+        <p id="impact">Because space weather isn’t just about pretty lights. It affects our lives in various ways: <br>- <span class="highlight">Magical Auroras</span>: Charged particles from the Sun collide with Earth’s atmosphere, exciting gases like oxygen and nitrogen, which glow like a natural fireworks display. Alex loves this—it lets him create stunning photos that inspire kids to learn about space! <br>- <span class="highlight">Technical Issues</span>: Strong space weather can damage satellites in orbit, causing GPS glitches. Imagine if Alex’s navigation failed on his way to a shoot—he might get lost! It also disrupts radio signals, so pilots must be careful, and power grids can flicker or even go out, as happened during a big storm in Canada in 1989. <br>- <span class="highlight">Impact on People</span>: Farmers worry that solar storms might affect their electric irrigation systems. IT specialists protect servers from radiation spikes. Fishermen at sea might lose radio contact during a geomagnetic storm. And for astronauts on the International Space Station, space weather means extra radiation, so they retreat to safer parts of the station.</p>
+        <img src="images/sun_explosion2.jpg" alt="Impact on Earth">
+        <p id="finale">When Alex set up his camera, the sky exploded with color! Green waves swayed like a dragon’s tail, and purple curtains waved hello. Click, click—Alex snapped it all. But suddenly, his phone lost signal—space weather was playing tricks, affecting satellites. “Wow, this CME is a real troublemaker!” Alex laughed, feeling thrilled and awestruck. Directly, space weather made Alex’s job exciting, creating epic auroras to photograph. Indirectly, it impacted his life: no signal meant no calling home, and a strong storm could delay flights for his next adventure. But Alex didn’t mind—these cosmic events reminded him how connected we are to the Sun and space. In the end, Alex’s photos went viral, teaching kids worldwide about space weather. “These aren’t just storms in space,” Alex said. “They’re a reminder that our blue planet is part of a vast, exciting universe!” And they all lived happily ever after under the Sun’s watchful eye.</p>
+        <img src="images/polar_lights.jpg" alt="Happy Finale">
+        <button id="refresh-cme" style="font-family: 'Comic Neue', cursive; font-size: 1.2em; padding: 10px 20px; margin: 20px auto; background: linear-gradient(45deg, #ff66cc, #66ccff); color: #fff; border: none; border-radius: 10px; cursor: pointer; box-shadow: 0 0 10px rgba(0, 255, 255, 0.8);">Refresh CME Data</button>
+        <p class="api-data" id="cme-data"></p>
+        <p class="api-data" id="flare-data">Loading solar flare data...</p>
+        <p>Video for reinforcement from NASA</p>
+        <iframe class="youtube-video" width="700" height="600" src="https://www.youtube.com/embed/Q2hOv6fcL48" title="Auroras from NASA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </div>
+    <script>
+        function createStars() {
+            const numStars = 50;
+            for (let i = 0; i < numStars; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = `${Math.random() * 100}vw`;
+                star.style.top = `${Math.random() * 100}vh`;
+                star.style.animationDelay = `${Math.random() * 5}s`;
+                document.body.appendChild(star);
+            }
+        }
+
+        function fetchCMEData() {
+            document.getElementById('cme-data').innerText = 'Loading space weather data...';
+            fetch('https://api.nasa.gov/DONKI/CME?api_key=NCTPl9NwhQPI9ljVZowSbf5FEYhXKskx6iTJe1bA')
+                .then(response => response.json())
+                .then(data => {
+                    console.log('API Data:', data);
+                    const latestCME = data[0];
+                    if (latestCME && latestCME.cmeAnalyses && latestCME.cmeAnalyses[0]) {
+                        const cmeTime = latestCME.startTime || 'unknown';
+                        const cmeSpeed = latestCME.cmeAnalyses[0].speed || 'unknown';
+                        document.getElementById('cme-data').innerText = 
+                            `Latest CME detected: ${cmeTime}, speed: ${cmeSpeed} km/s`;
+                    } else {
+                        document.getElementById('cme-data').innerText = 
+                            'CME data temporarily unavailable.';
+                    }
+                })
+                .catch(error => {
+                    console.error('API Error:', error);
+                    document.getElementById('cme-data').innerText = 
+                        'Failed to load space weather data.';
+                });
+        }
+
+        function fetchFlareData() {
+            document.getElementById('flare-data').innerText = 'Loading solar flare data...';
+            fetch('https://api.nasa.gov/DONKI/FLR?api_key=NCTPl9NwhQPI9ljVZowSbf5FEYhXKskx6iTJe1bA')
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Flare Data:', data);
+                    const latestFlare = data[0];
+                    if (latestFlare) {
+                        const flareTime = latestFlare.beginTime || 'unknown';
+                        const flareClass = latestFlare.classType || 'unknown';
+                        document.getElementById('flare-data').innerText = 
+                            `Latest solar flare: ${flareTime}, class: ${flareClass}`;
+                    } else {
+                        document.getElementById('flare-data').innerText = 
+                            'Flare data temporarily unavailable.';
+                    }
+                })
+                .catch(error => {
+                    console.error('Flare API Error:', error);
+                    document.getElementById('flare-data').innerText = 
+                        'Failed to load solar flare data.';
+                });
+        }
+
+        // Initial call to both functions
+        fetchCMEData();
+        fetchFlareData();
+
+        // Add event for simultaneous data refresh
+        document.getElementById('refresh-cme').addEventListener('click', function() {
+            fetchCMEData();
+            fetchFlareData();
+        });
+
+        createStars();
+    </script>
+</body>
+</html>
